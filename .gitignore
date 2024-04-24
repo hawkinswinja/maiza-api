@@ -1,0 +1,9 @@
+venv
+server/venv
+server/__pycache__
+server/.env
+models
+models.tar
+Maize
+raw
+*/.ipynb_checkpoints
