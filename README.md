@@ -33,6 +33,10 @@ Required data and field labels for the prediction are:
      ```
      git clone https://github.com/hawkinswinja/maiza-api.git && cd maiza-api
      ```
+- Download the [models.tar file](https://maiza-models.s3.amazonaws.com/models.tar) and extract in the root of the project folder
+    ```
+    tar -xf models.tar
+    ```
 - Create and activate a virtual environment
     ```
     python -m venv virt && source virt/bin/activate
