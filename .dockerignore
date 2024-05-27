@@ -6,7 +6,11 @@ models.tar
 notebooks
 Maize
 raw
+models/maize_model*.keras
 models/.ipynb*
 Dockerfile*
 post-request-demo.png
 .*
+LICENSE
+README.md
+env.example
