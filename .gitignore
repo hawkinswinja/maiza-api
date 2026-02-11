@@ -1,9 +1,10 @@
 venv
+virt
 server/venv
 server/__pycache__
-server/.env
+*.env
 models
-models.tar
+*models.tar
 Maize
 raw
 */.ipynb_checkpoints

@@ -5,6 +5,7 @@ from flask import request, jsonify
 from io import BytesIO
 from keras.models import load_model
 from PIL import Image
+from datetime import datetime, timedelta
 
 DISEASE_SOLUTIONS = {
     'fall armyworm': {
@@ -124,10 +125,12 @@ def crop_prediction(lat,lon):
                 Returns a list of three items [temperature, humidity, rainfall]
         """
         api_key = os.getenv('WEATHER_API')
-        url = f'http://api.weatherapi.com/v1/history.json?key={api_key}&q={lat},{lon}&dt=2024-01-04'
+        date = os.getenv('DATE', (datetime.now() - timedelta(days=6)).strftime('%Y-%m-%d'))
+        url = f'http://api.weatherapi.com/v1/history.json?key={api_key}&q={lat},{lon}&dt={date}'
         response = requests.get(url)
         weather_data = response.json()
         temperature = weather_data['forecast']['forecastday'][0]['day']['avgtemp_c']
+        print(temperature)
         humidity = weather_data['forecast']['forecastday'][0]['day']['avghumidity']
         rainfall = weather_data['forecast']['forecastday'][0]['day']['totalprecip_mm'] * 100 / 2 
         return [temperature, humidity, rainfall]

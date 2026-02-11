@@ -5,8 +5,6 @@
     The model can classify the image into seven classes, ie., Fallarmyworm, Grasshopper, Healthy, Leafbeetle, Leafblight, Leafspot, and Streakvirus.
 
 
-[API Link](http://maiza.hawkinswinja.me/)
-
 Endpoints available:
 - / : Welcome page (GET)
 - /status: Returns the status of the API (GET)
@@ -21,11 +19,16 @@ Required data and field labels for the prediction are:
 
 > Below is a demonstration of a POST request and the returned response.
 
-![Splash Screen](./post-request-demo.png)
+![successful response](./post-request-demo.png)
 
+> Post request using curl
+```
+curl -X POST "http://127.0.0.1:5000/predict" -F "latitude=-0.1746" -F "longitude=34.9163" -F "image=@/path/to/image"
+```
 
 ## Requirements
-- python 3.10 +
+- weather API key [weatherapi](https://weatherapi.com/)
+- python >=3.10 <3.12
 - docker (optional)
 
 ## Installation
@@ -33,10 +36,12 @@ Required data and field labels for the prediction are:
      ```
      git clone https://github.com/hawkinswinja/maiza-api.git && cd maiza-api
      ```
-- Download the [models.tar file](https://maiza-models.s3.amazonaws.com/models.tar) and extract in the root of the project folder
+- Download and Extract the models
     ```
-    tar -xf models.tar
+    wget --no-check-certificate "https://drive.google.com/uc?export=download&id=12Tk3gsAVO891rMvOhniWh5RNwsqeZSnk" -O maiza_models.tar
+    tar -xf maiza_models.tar
     ```
+
 - Create and activate a virtual environment
     ```
     python -m venv virt && source virt/bin/activate
@@ -65,11 +70,5 @@ Required data and field labels for the prediction are:
 docker pull hawkinswinja/maiza:v4
 docker run -p 8000:5000 -v ./server/.env:/app/.env 
 ```
-
-<!-- ## Areas to improve and contribute
-This project could really use contributions. Feel free to fork the repo and make pull requests for improvements
-- Limit registration to only the profile user i.e county admin can view players in academy but cannot register anew player
-- Facial recognition to identify player basedd on their images
-- Asynchronous database actions -->
 
 &copy; hawkinswinja
